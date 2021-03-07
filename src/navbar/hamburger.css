@@ -1,0 +1,49 @@
+div.hamburger {
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column nowrap;
+    z-index: 100;
+}
+div.hamburger, #one {
+    
+    width: 2rem;
+    height: 0.22rem;
+    background-color: black; 
+    border-radius: 2px;
+    transform-origin: 1px;
+    transition: all 0.3s linear; 
+    padding: 2px 0 2px 0;
+    margin: 2px 0 2px 0;
+}
+div.hamburger, #two {
+   
+    width: 2rem;
+    height: 0.22rem;
+    background-color: black; 
+    border-radius: 2px;
+    transform-origin: 1px;
+    transition: all 0.3s linear; 
+    padding: 2px 0 2px 0;
+    margin: 2px 0 2px 0;
+}
+div.hamburger, #three { 
+    width: 2rem;
+    height: 0.22rem;
+    background-color: black; 
+    border-radius: 2px;
+    transform-origin: 1px;
+    transition: all 0.3s linear;
+    padding: 2px 0 2px 0;
+    margin: 2px 0 2px 0;
+}
+
+@media (min-width: 1024px) {
+    div.hamburger {
+            display: none;
+    }
+}

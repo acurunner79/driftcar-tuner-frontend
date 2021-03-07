@@ -1,6 +1,8 @@
 import React from 'react'
 
-const Form = () => {
+const Form = (user) => {
+
+    const [formData, setFormData] = useState(user)
     return (
         <div>
             
