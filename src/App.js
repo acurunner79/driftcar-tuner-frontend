@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react'
 import Garage from './components/Garage'
 import CarDisplay from './components/CarDisplay'
 import Nav from './navbar/Nav'
+import Test from'./components/Test'
+import Form from './components/Form'
 import './App.css';
 
 function App() {
@@ -76,7 +78,7 @@ function App() {
           <Garage user={user} car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension}/>
         </Route>
         <Route>
-          <CarDisplay car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension}/>
+          <CarDisplay user={user} car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension}/>
         </Route>
       </Switch>
     </div>

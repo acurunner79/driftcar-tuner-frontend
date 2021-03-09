@@ -1,0 +1,18 @@
+.container {
+    display:inline-block;
+    width: 60%;
+    margin: 50px auto;
+    font-family: Goldman;
+}
+
+.form_group {
+    margin-bottom: 15px;
+}
+
+.form_control {
+    width: 100%;
+    border-radius: 8px;
+    background: #FFFFFF;
+    padding: 10px;
+    font-family: Goldman;
+}
