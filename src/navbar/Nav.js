@@ -7,9 +7,9 @@ import './nav.css'
 const Nav = () => {
     return ( 
         <div className="_nav">
-           <Link to="/">
               Driftcar Tuner Garage
-           </Link>
+           {/* <Link to="/">
+           </Link> */}
            <div className="menu-bar">
               <RightNav />
            </div>

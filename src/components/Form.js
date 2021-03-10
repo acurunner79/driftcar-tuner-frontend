@@ -1,56 +1,46 @@
 import React from 'react'
-import styles from './form.module.css'
-import makeAnimated from "react-select/animated"
+import styles from './CarBuild.module.css'
 
-const animatedComponents = makeAnimated()
 
-const Form = ({engine, clutch, differential, handBrake, rollcage, suspension}) => {
+
+
+const Form = ({user}) => {
     // console.log('This is user in form', engine )
     // console.log('This is clutch in form', differential )
+    const [formData, setFormData] = React.useState({user})
+
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      user.handleSubmit(formData)
+      user.history.push("/")
+    }
+
+    const handleChange = (event) => {
+      setFormData({...formData, [event.target.name]: event.target.value})
+      console.log(formData)
+    }
 
       
     return (
-        <form className={styles.container}>
-            <div className={styles.form_group}>
-                Engine:
-                <select className={styles.form_control}>
-                   {engine.map(motor => <option key={motor.engine_code} value={motor.engine_code}>{motor.engine_code} {motor.horsepower} </option>)}
-                </select>
-            <div className={styles.form_group}>
-                Clutch:
-                <select className={styles.form_control}>
-                  {clutch?.map(trans => <option key={trans.stage} value={trans.stage} >{trans.stage} {trans.brand}</option>)}
-                </select>
+          <div className={styles.form_group}>
+            <h3>Step One: Name your build</h3>
+          <form onSubmit={handleSubmit}>
+            <input 
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={formData.name}
+              onChange={handleChange}
+              />
+            <div>
+              <br></br>
+              <h3>Step Two: Select you year, make, and model</h3>
             </div>
-            <div className={styles.form_group}>
-                Differential:
-                <select className={styles.form_control}>
-                  {differential?.map(rearend => <option key={rearend.name} value={rearend.brand} >{rearend.name} {rearend.brand}</option>)}
-                </select>
-            </div> 
-            <div className={styles.form_group}>
-                Hand Brake:
-                <select className={styles.form_control}>
-                  {handBrake?.map(brake => <option key={brake.name} value={brake.brand} >{brake.name} {brake.brand}</option>)}
-                </select>
-            </div> 
-            <div className={styles.form_group}>
-                Rollcage:
-                <select className={styles.form_control}>
-                  {rollcage?.map(cage => <option key={cage.name} value={cage.brand} >{cage.name} {cage.brand}</option>)}
-                </select>
-            </div>
-            <div className={styles.form_group}>
-                Suspension:
-                <select className={styles.form_control}>
-                  {suspension?.map(spring => <option key={spring.name} value={spring.brand} >{spring.name} {spring.brand}</option>)}
-                </select>
-            </div>          
-            </div>
-        </form>
+            <input type="submit" value={user.label}/>
+            </form>
+          </div>
+            
     )
-      
-    
 }
 
     

@@ -1,30 +1,26 @@
 import React from 'react'
 
 const Garage = ({user}) => {
-console.log('This is user', user)
+console.log('This is garage user', user)
+
 
 const loaded = () => {
     return (
-        <>
-          {user.map((item) => {
-            //   console.log('This is item', item.cars[1])
-              return (
-
-            <div>
-               <h1>Welcome to your garage!</h1>
-               <div>
-              <h2>Name: {item.name}</h2>
-                   {item.cars.map(car => (
-                       <h3 key={car}>{car.year} {car.make} {car.model}</h3>
-                   ))}
-              </div>
-            </div>
-              )
-            }) 
-        }</>  
+        <div>
+            {user?.map((info) => {
+                console.log('this is info', info)
+                return (
+                    <div key={info?.user_id}>
+                        <h3>{info?.name}</h3>
+                        <button onClick={() => {user.deleteUser()}}>Delete</button>
+                        <button onClick={() => {user.selectUser()
+                        user?.history.push("/build")}}>Modify</button>
+                    </div>
+                )
+            })}
+        </div>
     )
 }
-
 const loading = () => {
     return (
         <div>
@@ -32,9 +28,8 @@ const loading = () => {
         </div>
     )
 }
-
-return user ? loaded() : loading()
-
-
+    return user ? loaded() : loading() 
 }
+
+
 export default Garage

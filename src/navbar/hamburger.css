@@ -1,6 +1,6 @@
 div.hamburger {
     position: fixed;
-    bottom: 35px;
+    /* bottom: 35px; */
     right: 35px;
     width: 2rem;
     height: 2rem;
@@ -22,8 +22,8 @@ div.hamburger, #one {
 }
 div.hamburger, #two {
    
-    width: 2rem;
-    height: 0.22rem;
+    /* width: 1rem;
+    height: 0.22rem; */
     background-color: black; 
     border-radius: 2px;
     transform-origin: 1px;
