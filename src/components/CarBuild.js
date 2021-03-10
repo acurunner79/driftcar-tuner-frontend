@@ -5,6 +5,9 @@ const CarBuild = ({car, engine, clutch, differential, handBrake, rollcage, suspe
     return (
         <form className={styles.container}>
             <div className={styles.form_group}>
+            <div>
+              <h3>Step Two: Select you year, make, and model</h3>
+            </div>
                 Drift Car:
                 <select className={styles.form_control}>
                    {car?.map(vehicle => <option key={vehicle} value={vehicle.year}>{vehicle.year} {vehicle.make} {vehicle.model} </option>)}

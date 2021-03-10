@@ -4,15 +4,15 @@ import styles from './CarBuild.module.css'
 
 
 
-const Form = ({user}) => {
+const Form = (props) => {
     // console.log('This is user in form', engine )
     // console.log('This is clutch in form', differential )
-    const [formData, setFormData] = React.useState({user})
+    const [formData, setFormData] = React.useState(props.user)
 
     const handleSubmit = (event) => {
       event.preventDefault();
-      user.handleSubmit(formData)
-      user.history.push("/")
+      props.handleSubmit(formData)
+      props.history.push("/")
     }
 
     const handleChange = (event) => {
@@ -29,14 +29,10 @@ const Form = ({user}) => {
               type="text"
               name="name"
               placeholder="Name"
-              value={formData.name}
+              value={formData?.name}
               onChange={handleChange}
               />
-            <div>
-              <br></br>
-              <h3>Step Two: Select you year, make, and model</h3>
-            </div>
-            <input type="submit" value={user.label}/>
+
             </form>
           </div>
             
