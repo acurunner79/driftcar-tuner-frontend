@@ -3,6 +3,10 @@ import { Link } from "react-router-dom"
 import Hamburger from './Hamburger'
 import RightNav from './RightNav'
 import './nav.css'
+import styled from 'styled-components'
+
+
+
 
 const Nav = () => {
     return ( 

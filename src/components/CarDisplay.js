@@ -9,10 +9,10 @@ const loaded = () => {
     return (
         <>
         <h1>Welcome to Drift Car Tuner Garage</h1>
-        {user?.map((item) => {
+        {user?.map((item, index) => {
               return (
                <div>
-              <h2>Name: {item?.name}</h2>
+              <h2 key={index}>Name: {item?.name}</h2>
                    {item?.cars.map((car, index) => (
                        <>
                        <img key={index} src={car.img}></img>

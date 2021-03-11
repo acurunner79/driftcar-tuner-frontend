@@ -1,31 +1,46 @@
 import React from 'react'
 import styles from './CarBuild.module.css'
 
-const CarBuild = ({handleSubmit, car, engine, clutch, differential, handBrake, rollcage, suspension}) => {
-    console.log(engine)
-    const [createCar, setCreateCar] = React.useState({'vehicle': '1992 Nissan 240SX', 'engine_id': 1, 'clutch_id':1, 'differential_id':1, 'hand_brake_id':4, 'rollcage_id':1, 'suspension_id':1, 'user_id': 1})
 
+const CarBuild = ({props, handleSubmit, car, engine, clutch, differential, handBrake, rollcage, suspension}) => {
+    const [createCar, setCreateCar] = React.useState({'vehicle': '1992 Nissan 240SX', 'engine_id': 1, 'clutch_id':1, 'differential_id':1, 'hand_brake_id':4, 'rollcage_id':1, 'suspension_id':1, 'user_id': 2})
+
+    // const [formData, setFormData] = React.useState({'user_id': 1})
+    // const userSubmit = (event) => {
+    //     event.preventDefault()
+    //     props.userSubmit(formData)
+    //     props.history.push("/")
+    // }
+    
+    // const userChange = (event) => {
+    //     setFormData({...formData, [event.target.name]: event.target.value})
+    //     console.log('This is name input', formData)
+    // }
     const handleChange = (event) => {
-        console.log('event target name', event.target.name)
+        console.log('event target name', event.target)
         if (event.target.name === 'vehicle') {
-        setCreateCar({
-           ...createCar,
-        [event.target.name]: event.target.value})
-    } else {
-        setCreateCar({
-            ...createCar,
-            [event.target.name]: parseInt(event.target.value)
-        })
-    }
-    }
-
-    const submit = (event) => {
-        event.preventDefault()
-        handleSubmit(createCar)
-    }
-    return (
-        <form className={styles.container} onSubmit={submit}>
+            setCreateCar({
+                ...createCar,
+                [event.target.name]: event.target.value})
+            } else {
+                setCreateCar({
+                    ...createCar,
+                    [event.target.name]: parseInt(event.target.value)
+                })
+            }
+        }
+        
+        const submit = (event) => {
+            event.preventDefault()
+            handleSubmit(createCar)
+        }
+        return (
+            <form className={styles.container} onSubmit={submit}>
             <div className={styles.form_group}>
+                <div>
+                    <h3>Step One: Name your buld</h3>
+                {/* <input type="text" name="user_id" value={formData?.index} placeholder="Name" onChange={handleChange}/>    */}
+                </div>
             <div>
               <h3>Step Two: Select you year, make, and model</h3>
             </div>

@@ -5,7 +5,19 @@ import CarDisplay from './components/CarDisplay'
 import CarBuild from './components/CarBuild'
 import Form from './components/Form'
 import Nav from './navbar/Nav'
-import './App.css';
+// import './App.css';
+import {createGlobalStyle} from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body{
+    text-align: center;
+    background: gray;
+    min-height: 100vh;
+    margin: 0;
+    color: black;
+    font-family: 'Goldman'
+  }
+`
 
 function App() {
   
@@ -64,29 +76,38 @@ function App() {
     })
   }
   
-  const emptyUser = {
-    name: " "
-  }
-  const [selectedUser, setSelectedUser] = useState({emptyUser})
+  // const emptyUser = {
+  //   name: " "
+  // }
   const handleCreate =(newCar) => {
     console.log("handleCreate", newCar)
     const vehicleArray = newCar.vehicle.split(' ')
+    console.log('split',newCar.vehicle.split(' '))
     const year = vehicleArray.shift()
+    console.log('year', year)
     const make = vehicleArray.shift()
+    console.log('make', make)
     const model = vehicleArray.join(' ')
+    console.log('model', model)
     delete newCar.make
     const revisedCar = {...newCar, year, make, model}
     const getCars = () => {
-       fetch("http://localhost:3000/cars", {
-         method: "post",
-         headers: {"Content-Type": "application/json"},
-           body: JSON.stringify(revisedCar),
-       }).then(() => {
-       })
-     }
+      fetch("http://localhost:3000/cars", {
+        method: "post",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(revisedCar),
+      }).then(() => {
+      })
+    }
     getCars()
   }
   
+  const [selectedUser, setSelectedUser] = useState("")
+  const selectUser = (user) => {
+    setSelectedUser(user)
+      console.log('Selected user', user)
+    }
+
   const handleUpdate = (user) => {
     const getUsers = () => {
       fetch("http://localhost:3000/users/user._id", {
@@ -98,30 +119,29 @@ function App() {
     }
     getUsers()
   }
-    
-    const deleteUser = (user) => {
-      const grabUser = () => {
-        fetch ("http://localhost:3000/users/user._id", {
-          method: "delete"
-        }).then(() => {
-        })
-      }
-      grabUser()
+  
+  const deleteUser = (user) => {
+    console.log('This is user to be deleted', user)
+    const grabUser = () => {
+      fetch ("http://localhost:3000/users/" + user.id, {
+        method: "delete"
+      }).then(() => {
+      })
     }
-    
-    const selectUser = (user) => {
-      setSelectedUser(user)
-    }
-    
+    grabUser(user)
+    console.log('this is grabbed user', user)
+  }
+  
     useEffect(() => getUser(), [])  
     useEffect(() => getData(), [])
     return (
       <div className="App">
+        <GlobalStyle />
       <Nav />
       <Switch>
         <Route path="/my_garage" render={(rp) => <Garage {...rp} selectUser={selectUser} deleteUser={deleteUser} handleSubmit={handleUpdate} user={user}/>}/>
         <Route path="/build_a_car">
-          <Form selectedUser={selectedUser} handleSubmit={handleCreate}/>
+          {/* <Form /> */}
           <CarBuild user={user} car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension} handleSubmit={handleCreate}/>
           </Route>
         <Route exact path="/">

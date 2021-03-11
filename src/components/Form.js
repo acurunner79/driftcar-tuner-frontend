@@ -5,8 +5,7 @@ import styles from './CarBuild.module.css'
 
 
 const Form = (props) => {
-    // console.log('This is user in form', engine )
-    // console.log('This is clutch in form', differential )
+
     const [formData, setFormData] = React.useState(props.user)
 
     const handleSubmit = (event) => {
@@ -32,7 +31,6 @@ const Form = (props) => {
               value={formData?.name}
               onChange={handleChange}
               />
-
             </form>
           </div>
             
