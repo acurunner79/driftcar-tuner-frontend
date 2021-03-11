@@ -2,7 +2,7 @@ import React from 'react'
 import styles from './CarBuild.module.css'
 
 
-const CarBuild = ({props, handleSubmit, car, engine, clutch, differential, handBrake, rollcage, suspension}) => {
+const CarBuild = ({ handleSubmit, car, engine, clutch, differential, handBrake, rollcage, suspension}) => {
     const [createCar, setCreateCar] = React.useState({'vehicle': '1992 Nissan 240SX', 'engine_id': 1, 'clutch_id':1, 'differential_id':1, 'hand_brake_id':4, 'rollcage_id':1, 'suspension_id':1, 'user_id': 2})
 
     // const [formData, setFormData] = React.useState({'user_id': 1})
@@ -37,12 +37,12 @@ const CarBuild = ({props, handleSubmit, car, engine, clutch, differential, handB
         return (
             <form className={styles.container} onSubmit={submit}>
             <div className={styles.form_group}>
-                <div>
+                {/* <div>
                     <h3>Step One: Name your buld</h3>
-                {/* <input type="text" name="user_id" value={formData?.index} placeholder="Name" onChange={handleChange}/>    */}
-                </div>
+                <input type="text" name="user_id" value={formData?.index} placeholder="Name" onChange={handleChange}/>   
+                </div> */}
             <div>
-              <h3>Step Two: Select you year, make, and model</h3>
+              <h3>Step One: Select your year, make, and model</h3>
             </div>
                 Drift Car:
                 <select className={styles.form_control} name="vehicle" onChange={handleChange}>

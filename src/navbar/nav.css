@@ -1,13 +1,17 @@
-.a {
-    color: black;
+.underline {
+  color: inherit;
+  text-decoration: inherit;
 }
-
-._nav, ._nav.a {
+h2 {
+  color: black;
+  text-decoration: none !important;
+}
+.a, div._nav {
     color: black;
-    text-decoration: none;
     width: 100vw;
     height: 65px;
-    padding: 20px;
+    padding: 0px;
+    right: 65px;
     border-bottom: 2px solid black;
     display: flex;
     justify-content: space-between;
@@ -17,20 +21,28 @@
   #nav-title {
     font-weight: 600;
     font-size: 20px;
+    text-decoration: none;
   }
   .menu-bar {
     display: none;
   }
 
+  div.links-container li.links {
+    text-decoration: none !important;
+    
+  }
+
   .links-container {
     display: flex;
+    text-decoration: none !important;
     flex-direction: column;
     justify-content: space-around;
     height: 250px;
     margin: auto 0;
   }
-
+  
   .links-container li {
+    text-decoration: none !important;
     margin: 0 25px;
     z-index: 50;
   }
@@ -47,5 +59,6 @@
       align-items: center;
       justify-content: space-around;
       width: 450px;
+      text-decoration: none !important;
     }
 }

@@ -1,7 +1,7 @@
 div.hamburger {
     position: fixed;
     /* bottom: 35px; */
-    right: 35px;
+    right: 65px;
     width: 2rem;
     height: 2rem;
     display: flex;

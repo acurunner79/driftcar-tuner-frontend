@@ -15,8 +15,10 @@ const GlobalStyle = createGlobalStyle`
     min-height: 100vh;
     margin: 0;
     color: black;
-    font-family: 'Goldman'
-  }
+    font-family: 'Orbitron';
+    background: linear-gradient(120deg, rgba(132, 128, 128, 1) 0%, rgba(183, 176, 176, 1) 35%, rgba(18, 218, 237, 1) 110%);
+      }
+  
 `
 
 function App() {

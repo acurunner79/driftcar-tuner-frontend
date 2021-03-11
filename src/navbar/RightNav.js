@@ -7,25 +7,22 @@ const RightNav = (props) => {
   
     return (     
     <div className="links-container">
-        <Link to="/">
+        <Link to="/" className="underline">
           <li className="links" onClick={props.handleClick}>
             Home
-            <div className="underline"></div>
           </li>
         </Link>
-        <Link to="/my_garage">
+        <Link to="/my_garage" className="underline">
           <li className="links" onClick={props.handleClick}>
             Garage
-            <div className="underline"></div>
           </li>
         </Link>
-        <Link to="/build_a_car">
+        <Link to="/build_a_car" className="underline">
           <li className="links" onClick={props.handleClick}>
             Create Driftcar
-            <div className="underline"></div>
           </li>
         </Link>
-        <Link to="/about">
+        <Link to="/about" className="underline">
           <li className="links" onClick={props.handleClick}>
             About
           </li>

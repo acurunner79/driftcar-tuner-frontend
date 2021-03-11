@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import Hamburger from './Hamburger'
 import RightNav from './RightNav'
 import './nav.css'
-import styled from 'styled-components'
+
 
 
 
@@ -11,9 +11,9 @@ import styled from 'styled-components'
 const Nav = () => {
     return ( 
         <div className="_nav">
-              Driftcar Tuner Garage
-           {/* <Link to="/">
-           </Link> */}
+           <Link to="/" className="underline">
+              <h2>Driftcar Tuner Garage</h2>
+           </Link>
            <div className="menu-bar">
               <RightNav />
            </div>
