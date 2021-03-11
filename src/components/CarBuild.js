@@ -1,57 +1,79 @@
 import React from 'react'
 import styles from './CarBuild.module.css'
 
-const CarBuild = ({car, engine, clutch, differential, handBrake, rollcage, suspension}) => {
+const CarBuild = ({handleSubmit, car, engine, clutch, differential, handBrake, rollcage, suspension}) => {
+    console.log(engine)
+    const [createCar, setCreateCar] = React.useState({'vehicle': '1992 Nissan 240SX', 'engine_id': 1, 'clutch_id':1, 'differential_id':1, 'hand_brake_id':4, 'rollcage_id':1, 'suspension_id':1, 'user_id': 1})
+
+    const handleChange = (event) => {
+        console.log('event target name', event.target.name)
+        if (event.target.name === 'vehicle') {
+        setCreateCar({
+           ...createCar,
+        [event.target.name]: event.target.value})
+    } else {
+        setCreateCar({
+            ...createCar,
+            [event.target.name]: parseInt(event.target.value)
+        })
+    }
+    }
+
+    const submit = (event) => {
+        event.preventDefault()
+        handleSubmit(createCar)
+    }
     return (
-        <form className={styles.container}>
+        <form className={styles.container} onSubmit={submit}>
             <div className={styles.form_group}>
             <div>
               <h3>Step Two: Select you year, make, and model</h3>
             </div>
                 Drift Car:
-                <select className={styles.form_control}>
-                   {car?.map(vehicle => <option key={vehicle} value={vehicle.year}>{vehicle.year} {vehicle.make} {vehicle.model} </option>)}
+                <select className={styles.form_control} name="vehicle" onChange={handleChange}>
+                   {car?.map((vehicle, index) => <option key={index} value={vehicle.car_id}>{vehicle.year} {vehicle.make} {vehicle.model} </option>)}
                 </select>
             </div>
+            <div></div>
             <br></br>
             <h3>Step Three:Configure your Drift Car</h3>
             <div className={styles.form_group}>
                 Engine:
-                <select className={styles.form_control}>
-                   {engine?.map(motor => <option key={motor.engine_code} value={motor.engine_code}>{motor.engine_code} {motor.horsepower} </option>)}
+                <select className={styles.form_control} name="engine_id" onChange={handleChange}>
+                   {engine?.map((motor, index) => <option key={index} value={index + 1}>{motor.engine_code} {motor.horsepower} </option>)}
                 </select>
             </div>
             <div className={styles.form_group}>
                 Clutch:
-                <select className={styles.form_control}>
-                  {clutch?.map(trans => <option key={trans.stage} value={trans.stage} >{trans.stage} {trans.brand}</option>)}
+                <select className={styles.form_control} name="clutch_id" onChange={handleChange}>
+                  {clutch?.map((trans, index) => <option key={index} value={index + 1} >{trans.stage} {trans.brand}</option>)}
                 </select>
             </div>
             <div className={styles.form_group}>
                 Differential:
-                <select className={styles.form_control}>
-                  {differential?.map(rearend => <option key={rearend.name} value={rearend.brand} >{rearend.name} {rearend.brand}</option>)}
+                <select className={styles.form_control} name="differential_id" onChange={handleChange}>
+                  {differential?.map((rearend, index) => <option key={index} value={index + 1} >{rearend.name} {rearend.brand}</option>)}
                 </select>
             </div> 
             <div className={styles.form_group}>
                 Hand Brake:
-                <select className={styles.form_control}>
-                  {handBrake?.map(brake => <option key={brake.name} value={brake.brand} >{brake.name} {brake.brand}</option>)}
+                <select className={styles.form_control} name="hand_brake_id" onChange={handleChange}>
+                  {handBrake?.map((brake, index) => <option key={index} value={index + 1} >{brake.name} {brake.brand}</option>)}
                 </select>
             </div> 
             <div className={styles.form_group}>
                 Rollcage:
-                <select className={styles.form_control}>
-                  {rollcage?.map(cage => <option key={cage.name} value={cage.brand} >{cage.name} {cage.brand}</option>)}
+                <select className={styles.form_control} name="rollcage_id" onChange={handleChange}>
+                  {rollcage?.map((cage, index) => <option key={index} value={index + 1} >{cage.name} {cage.brand}</option>)}
                 </select>
             </div>
             <div className={styles.form_group}>
                 Suspension:
-                <select className={styles.form_control}>
-                  {suspension?.map(spring => <option key={spring.name} value={spring.brand} >{spring.name} {spring.brand}</option>)}
+                <select className={styles.form_control} name="suspension_id" onChange={handleChange}>
+                  {suspension?.map((spring, index) => <option key={index} value={index + 1} >{spring.name} {spring.brand}</option>)}
                 </select>
             </div> 
-            <button className={styles.button}>Create</button>         
+            <button className={styles.button} >Create</button>         
         </form>
     )
 }

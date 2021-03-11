@@ -8,13 +8,13 @@ const loaded = () => {
     return (
         <div>
             {user?.map((info) => {
-                console.log('this is info', info)
+                console.log('this is mapped info', info)
                 return (
                     <div key={info?.user_id}>
                         <h3>{info?.name}</h3>
-                        <button onClick={() => {user.deleteUser()}}>Delete</button>
-                        <button onClick={() => {user.selectUser()
-                        user?.history.push("/build")}}>Modify</button>
+                        <button onClick={() => {user?.deleteUser(info?.user_id)}}>Delete</button>
+                        <button onClick={() => {user?.selectUser(info?.user_id)
+                        user?.history?.push("/build_a_car")}}>Modify</button>
                     </div>
                 )
             })}

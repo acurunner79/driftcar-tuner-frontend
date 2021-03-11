@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { Route, Switch } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import Garage from './components/Garage'
@@ -22,42 +21,42 @@ function App() {
   const getData = async () => {
     
     
-    const userCall = await fetch("https://driftcar-tuner.herokuapp.com//users")
+    const userCall = await fetch("http://localhost:3000/users")
     const userData = await userCall.json()
     setUser(userData)
     
-    const carCall = await fetch("https://driftcar-tuner.herokuapp.com//cars")
+    const carCall = await fetch("http://localhost:3000/cars")
     const carData = await carCall.json()
     setCar(carData)
     
-    const engineCall = await fetch("https://driftcar-tuner.herokuapp.com//engines")
+    const engineCall = await fetch("http://localhost:3000/engines")
     const engineData = await engineCall.json()
     setEngine(engineData)
     
-    const clutchCall = await fetch("https://driftcar-tuner.herokuapp.com//clutches")
+    const clutchCall = await fetch("http://localhost:3000/clutches")
     const clutchData = await clutchCall.json()
     setClutch(clutchData)
     
-    const differentialCall = await fetch("https://driftcar-tuner.herokuapp.com//differentials")
+    const differentialCall = await fetch("http://localhost:3000/differentials")
     const differentialData = await differentialCall.json()
     setDifferential(differentialData)
     
-    const handBrakeCall = await fetch("https://driftcar-tuner.herokuapp.com//hand_brakes")
+    const handBrakeCall = await fetch("http://localhost:3000/hand_brakes")
     const handBrakeData = await handBrakeCall.json()
     setHandBrake(handBrakeData)
     
-    const rollcageCall = await fetch("https://driftcar-tuner.herokuapp.com//rollcages")
+    const rollcageCall = await fetch("http://localhost:3000/rollcages")
     const rollcageData = await rollcageCall.json()
     setRollcage(rollcageData)
     
-    const suspensionCall = await fetch("https://driftcar-tuner.herokuapp.com//suspensions")
+    const suspensionCall = await fetch("http://localhost:3000/suspensions")
     const suspensionData = await suspensionCall.json()
     setSuspension(suspensionData)
     
   }
   
   const getUser = () => {
-    fetch(getData + "/users")
+    fetch("http://localhost:3000/users")
     .then((response) => response.json())
     .then((userInfo) => {
       setUser(userInfo)
@@ -70,30 +69,44 @@ function App() {
   }
   const [selectedUser, setSelectedUser] = useState({emptyUser})
   const handleCreate =(newCar) => {
+    console.log("handleCreate", newCar)
+    const vehicleArray = newCar.vehicle.split(' ')
+    const year = vehicleArray.shift()
+    const make = vehicleArray.shift()
+    const model = vehicleArray.join(' ')
+    delete newCar.make
+    const revisedCar = {...newCar, year, make, model}
     const getCars = () => {
-      fetch(getData + "/cars", {
-        method: "post",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(newCar),
-      }).then(() => {
-        getCars()
-      })
-    }
+       fetch("http://localhost:3000/cars", {
+         method: "post",
+         headers: {"Content-Type": "application/json"},
+           body: JSON.stringify(revisedCar),
+       }).then(() => {
+       })
+     }
+    getCars()
   }
   
   const handleUpdate = (user) => {
     const getUsers = () => {
-      fetch(getData + "/users/update-user/" + "user._id", {
+      fetch("http://localhost:3000/users/user._id", {
         method: "put",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(user)}).then(() => {getUsers()})
-      }
+        body: JSON.stringify(user)
+      }).then(() => {
+      })
     }
+    getUsers()
+  }
     
     const deleteUser = (user) => {
       const grabUser = () => {
-        fetch (getData + "/users/" + user._id, {method: "delete"}).then(() => {grabUser()})
+        fetch ("http://localhost:3000/users/user._id", {
+          method: "delete"
+        }).then(() => {
+        })
       }
+      grabUser()
     }
     
     const selectUser = (user) => {
@@ -101,15 +114,17 @@ function App() {
     }
     
     useEffect(() => getUser(), [])  
-    useEffect(() => {getData()}, [])
+    useEffect(() => getData(), [])
     return (
       <div className="App">
       <Nav />
       <Switch>
         <Route path="/my_garage" render={(rp) => <Garage {...rp} selectUser={selectUser} deleteUser={deleteUser} handleSubmit={handleUpdate} user={user}/>}/>
-        <Route exact path="/build_a_car" render={(rp) => ( <Form {...rp} label="Create" emptyUser={emptyUser} selectedUser={selectedUser}handleSubmit={handleCreate}/>)}/>
-          <CarBuild user={user} car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension}/>
-        <Route path="/">
+        <Route path="/build_a_car">
+          <Form selectedUser={selectedUser} handleSubmit={handleCreate}/>
+          <CarBuild user={user} car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension} handleSubmit={handleCreate}/>
+          </Route>
+        <Route exact path="/">
           <CarDisplay user={user} car={car} engine={engine} clutch={clutch} differential={differential} handBrake={handBrake} rollcage={rollcage} suspension={suspension}/>
         </Route>
       </Switch>

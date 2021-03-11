@@ -1,5 +1,5 @@
 import React from 'react'
-import Form from './Form'
+
 
 
 const CarDisplay = ({user, engine, clutch, differential, handBrake, rollcage, suspension}) => {
@@ -13,10 +13,10 @@ const loaded = () => {
               return (
                <div>
               <h2>Name: {item?.name}</h2>
-                   {item?.cars.map(car => (
+                   {item?.cars.map((car, index) => (
                        <>
-                       <img key={car} src={car.img}></img>
-                       <h3 key={car}>{car?.year} {car?.make} {car?.model}</h3>
+                       <img key={index} src={car.img}></img>
+                       <h3 key={index}>{car?.year} {car?.make} {car?.model}</h3>
                       </>
                    ))}
                 </div>
