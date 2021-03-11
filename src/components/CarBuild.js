@@ -51,7 +51,7 @@ const CarBuild = ({ handleSubmit, car, engine, clutch, differential, handBrake, 
             </div>
             <div></div>
             <br></br>
-            <h3>Step Three:Configure your Drift Car</h3>
+            <h3>Step Two:Configure your Drift Car</h3>
             <div className={styles.form_group}>
                 Engine:
                 <select className={styles.form_control} name="engine_id" onChange={handleChange}>
