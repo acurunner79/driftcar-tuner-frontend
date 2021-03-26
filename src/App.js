@@ -35,42 +35,42 @@ function App() {
   const getData = async () => {
     
     
-    const userCall = await fetch("http://localhost:3000/users")
+    const userCall = await fetch("https://driftcar-tuner.herokuapp.com/users")
     const userData = await userCall.json()
     setUser(userData)
     
-    const carCall = await fetch("http://localhost:3000/cars")
+    const carCall = await fetch("https://driftcar-tuner.herokuapp.com/cars")
     const carData = await carCall.json()
     setCar(carData)
     
-    const engineCall = await fetch("http://localhost:3000/engines")
+    const engineCall = await fetch("https://driftcar-tuner.herokuapp.com/engines")
     const engineData = await engineCall.json()
     setEngine(engineData)
     
-    const clutchCall = await fetch("http://localhost:3000/clutches")
+    const clutchCall = await fetch("https://driftcar-tuner.herokuapp.com/clutches")
     const clutchData = await clutchCall.json()
     setClutch(clutchData)
     
-    const differentialCall = await fetch("http://localhost:3000/differentials")
+    const differentialCall = await fetch("https://driftcar-tuner.herokuapp.com/differentials")
     const differentialData = await differentialCall.json()
     setDifferential(differentialData)
     
-    const handBrakeCall = await fetch("http://localhost:3000/hand_brakes")
+    const handBrakeCall = await fetch("https://driftcar-tuner.herokuapp.com/hand_brakes")
     const handBrakeData = await handBrakeCall.json()
     setHandBrake(handBrakeData)
     
-    const rollcageCall = await fetch("http://localhost:3000/rollcages")
+    const rollcageCall = await fetch("https://driftcar-tuner.herokuapp.com/rollcages")
     const rollcageData = await rollcageCall.json()
     setRollcage(rollcageData)
     
-    const suspensionCall = await fetch("http://localhost:3000/suspensions")
+    const suspensionCall = await fetch("https://driftcar-tuner.herokuapp.com/suspensions")
     const suspensionData = await suspensionCall.json()
     setSuspension(suspensionData)
     
   }
   
   const getUser = () => {
-    fetch("http://localhost:3000/users")
+    fetch("https://driftcar-tuner.herokuapp.com/users")
     .then((response) => response.json())
     .then((userInfo) => {
       setUser(userInfo)
@@ -94,7 +94,7 @@ function App() {
     delete newCar.make
     const revisedCar = {...newCar, year, make, model}
     const getCars = () => {
-      fetch("http://localhost:3000/cars", {
+      fetch("https://driftcar-tuner.herokuapp.com/cars", {
         method: "post",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(revisedCar),
@@ -112,7 +112,7 @@ function App() {
 
   const handleUpdate = (user) => {
     const getUsers = () => {
-      fetch("http://localhost:3000/users/user._id", {
+      fetch("https://driftcar-tuner.herokuapp.com/users/user._id", {
         method: "put",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(user)
@@ -125,7 +125,7 @@ function App() {
   const deleteUser = (user) => {
     console.log('This is user to be deleted', user)
     const grabUser = () => {
-      fetch ("http://localhost:3000/users/" + user.id, {
+      fetch ("https://driftcar-tuner.herokuapp.com/users/" + user.id, {
         method: "delete"
       }).then(() => {
       })
